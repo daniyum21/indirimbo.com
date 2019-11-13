@@ -17,9 +17,11 @@ class BookSubSection extends Model
     }
     public static function subSectionSongsCount($subsectionName)
     {
+        //dd(self::where('SubSectionName','=',$subsectionName)->where('country_id','=',getCountryID())->first()->indirimbo);
+
 
         //dd(self::where('SubSectionName','=',$subsectionName)->first()->SubSectionID);
-        return self::where('SubSectionName','=',$subsectionName)->where('country_id',getCountryID())->first()->indirimbo->count();
+        return self::where('SubSectionName','=',$subsectionName)->where('country_id','=',getCountryID())->first()->indirimbo->count();
     }
     public function getRouteKeyName()
     {

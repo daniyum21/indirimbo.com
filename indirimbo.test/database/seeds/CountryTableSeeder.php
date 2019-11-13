@@ -1,5 +1,6 @@
 <?php
 
+use App\BookSection;
 use App\BookSubSection;
 use App\Country;
 use Illuminate\Database\Seeder;
@@ -54,5 +55,16 @@ class CountryTableSeeder extends Seeder
         BookSubSection::create(['SubSectionName' => 'Guhamba', 'country_id'=>2]);
         BookSubSection::create(['SubSectionName' => "Iziririmbwa n'abahinga", 'country_id'=>2]);
         BookSubSection::create(['SubSectionName' => 'Izongewe', 'country_id'=>2]);
+
+
+        /*
+         *
+         * NOW WE DECIDED TO ADD BURUNDI, IT MAY HAVE ITS OWN BOOK SECTIONS
+         *
+         * */
+
+        BookSection::create(['sectionID'=>3, 'country_id'=>2, 'sectionName'=>"Indirimbo zo Gushimisha"]);
+        BookSection::create(['sectionID'=>4, 'country_id'=>2, 'sectionName'=>"Indirimbo z'Agakiza'"]);
+
     }
 }

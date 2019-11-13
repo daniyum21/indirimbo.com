@@ -19,9 +19,15 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="{{ Route::currentRouteName() == 'Home' ? 'active' : '' }}"><a href="/">Home</a></li>
+                @if(getCountryID()==1)
+                <li class="{{ Route::currentRouteName() == 'Home' ? 'active' : '' }}">
+                    <a href="http://burundi.indirimbo.com/">Burundi Version</a></li>
+                @else
+                    <li class="{{ Route::currentRouteName() == 'Home' ? 'active' : '' }}">
+                        <a href="http://indirimbo.com">Rwanda Version</a></li>
+                @endif
 
-                {{--<!--<li class="active">{!! link_to_route('home',['Home']) !!}<!--a href="/">Home</a--></li>-->--}}
+                    {{--<!--<li class="active">{!! link_to_route('home',['Home']) !!}<!--a href="/">Home</a--></li>-->--}}
 @if(getCountryID()==1)
                 <li class="dropdown {{ Route::currentRouteName() == 'gushimisha' || Route::currentRouteName() == 'agakiza' ? 'active' : '' }}">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">INDIRIMBO ZO MUGITABO <span class="caret"></span></a>

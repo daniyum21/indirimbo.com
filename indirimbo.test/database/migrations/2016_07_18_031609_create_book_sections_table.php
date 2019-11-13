@@ -14,10 +14,10 @@ class CreateBookSectionsTable extends Migration
     {
         Schema::create('BookSections', function(Blueprint $table)
         {
-            //$table->engine = 'MyISAM';
-            //$table->increments('SectionID');
+
             $table->integer('SectionID',true);
             $table->string('SectionName',40);
+            $table->integer('country_id')->nullable()->default(1);
             $table->timestamps();
             $table->string('UUID');
             $table->softDeletes();

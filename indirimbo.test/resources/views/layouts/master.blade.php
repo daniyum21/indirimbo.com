@@ -31,6 +31,8 @@ Uru ni urubuga rw'indirimbo zo gushimisha Imana n'iz'agakiza, nkuko zigaragara m
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/manifest.json">
+    <script src="https://kit.fontawesome.com/62c4ca761d.js" crossorigin="anonymous"></script>
+
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
@@ -82,6 +84,5 @@ Uru ni urubuga rw'indirimbo zo gushimisha Imana n'iz'agakiza, nkuko zigaragara m
 <script type="text/javascript" src="{{ asset('js/jquery/1.11.1/jquery.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('js/bootstrap.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('js/docs.min.js')}}"></script>
-
 </body>
 </html>

@@ -8,7 +8,7 @@ class BookSection extends Model
 {
     protected $table='BookSections';
     protected $primaryKey = 'SectionID';
-    protected $fillable = [];
+    protected $fillable = ['sectionID', 'sectionName','country_id'];
 
 
     public function indirimbo()

@@ -46,7 +46,7 @@ class AdminController extends Controller {
 	 */
 	public function create()
 	{
-        $bookSections = BookSection::orderBy('SectionID', 'asc')->pluck('SectionName','SectionID');
+        $bookSections = BookSection::where('country_id',getCountryID())->orderBy('SectionID', 'asc')->pluck('SectionName','SectionID');
 
         $bookSubSections = BookSubSection::where('country_id',getCountryID())->orderBy('SubSectionID', 'asc')->pluck('SubSectionName','SubSectionID');
 
@@ -302,9 +302,9 @@ public function saveChoirSong( Request $request)
     {
         $indirimbo = Indirimbo::where('UUID',$songUUID)->first();
 
-        $bookSections = BookSection::orderBy('SectionID', 'asc')->pluck('SectionName','SectionID');
+        $bookSections = BookSection::where('country_id',getCountryID())->orderBy('SectionID', 'asc')->pluck('SectionName','SectionID');
 
-        $bookSubSections = BookSubSection::orderBy('SubSectionID', 'asc')->pluck('SubSectionName','SubSectionID');
+        $bookSubSections = BookSubSection::where('country_id',getCountryID())->orderBy('SubSectionID', 'asc')->pluck('SubSectionName','SubSectionID');
 
 
 

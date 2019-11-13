@@ -1,15 +1,15 @@
 @extends('layouts.master')
 @section('contents')
+
 <div class="hero-unit jumbotron" style="margin-right:2em">
-    <div   style="text-align: center"><h1><b class="song-title">{!!$indirimbo->SongNumber!!}: {!!$indirimbo->Title!!}</b></h1>
+    <div   style="text-align: center"><h1><b class="song-title">{!!$indirimbo->SongNumber!!}: {!!$indirimbo->Title!!}</b> </h1>
+       <a target="_blank" href="/{!!$bookTitle!!}/{!!clean($indirimbo->Title)!!}/{!!$indirimbo->UUID!!}/pdf"> <i style="float:right; color:red;" class="fas fa-file-pdf fa-3x"></i></a>
+
     @if($subSectionName)
             <span><a href="/{!!str_replace(' ','-',$subSectionName)!!}"> < {!!$subSectionName!!} > </a></span>
         @endif
-        @if($indirimbo->SectionID==1)
-            <span><a href="/gushimisha">< {!!$indirimbo->section->SectionName!!} > </a></span>
-            @elseif($indirimbo->SectionID==2)
-            <span><a href="/agakiza">< {!!$indirimbo->section->SectionName!!} > </a></span>
-        @endif
+
+            <span><a href="/{{$bookTitle}}">< {!!$indirimbo->section->SectionName!!} > </a></span>
         <br><br>
         @if($indirimbo->FileName)
             <audio controls>

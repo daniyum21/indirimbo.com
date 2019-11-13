@@ -134,6 +134,7 @@ $umuhanzi=Umuhanzi::findOrFail($indirimbo->UmuhanziID);
         if(!($subsection=BookSubSection::where('country_id',getCountryID())->where('SubSectionName','=',$cleanSearch)->first()))
             abort(404);
         $indirimbo=$subsection->indirimbo()->paginate(10);
+
         $subsectionTitle=ucfirst($cleanSearch);
         $sectionTitle='gushimisha';
         return view('indirimbo.subsectionListing',compact('indirimbo','sectionTitle','subsectionTitle'));
@@ -141,26 +142,48 @@ $umuhanzi=Umuhanzi::findOrFail($indirimbo->UmuhanziID);
 
     private function displaySection($sectionName)
     {
-
+        $sectionID=$this->getSectionID($sectionName);
         if($sectionName=='agakiza')
         {
             $sectionTitle='agakiza';
-            $sectionID = 2;
         }
         else
         {
             $sectionTitle='gushimisha';
-            $sectionID = 1;
         }
-        //$subsections=BookSubSection::lists('SubSectionName');
-        $subsections=BookSubSection::pluck('SubSectionName');
 
-        $tempSong=BookSection::find($sectionID);
+
+        $subsections=BookSubSection::where('country_id',getCountryID())->pluck('SubSectionName');
+        $tempSong=BookSection::findOrFail($sectionID);
         $indirimbo=$tempSong->indirimbo()->paginate(10);
 
         return view('indirimbo.sectionListing',compact('indirimbo','sectionTitle','subsections'));
     }
+private function getSectionID($sectionName)
+{
+    if(getCountryID()==1)//Rwanda
+    {
+        if($sectionName=='agakiza')
+        {
+            $sectionID = 2;
+        }
+        else
+        {
+            $sectionID = 1;
+        }
+    }
+    else
+        if($sectionName=='agakiza')
+        {
+            $sectionID = 4;
+        }
+        else
+        {
+            $sectionID = 3;
+        }
 
+    return $sectionID ;
+}
 
     public function showSong($bookTitle,$songName,$songNumber,$pdf=false)
     {
@@ -181,6 +204,7 @@ $umuhanzi=Umuhanzi::findOrFail($indirimbo->UmuhanziID);
         if(!$indirimbo)
             abort(404);
         $pageTitle=$indirimbo->Title;
+        //$bookTitle=$pageTitle;
         if($indirimbo->section->SectionName=="Indirimbo zo Gushimisha")
             $subSectionName=$indirimbo->SubSection->SubSectionName;
         else
@@ -188,9 +212,9 @@ $umuhanzi=Umuhanzi::findOrFail($indirimbo->UmuhanziID);
 
         $subsections=BookSubSection::pluck('SubSectionName');
         if(!$pdf)
-        return view('indirimbo.viewSong',compact('indirimbo','pageTitle','subSectionName','subsections'));
+        return view('indirimbo.viewSong',compact('indirimbo','pageTitle','subSectionName','subsections','bookTitle'));
 
-        $pdf = PDF::loadView('indirimbo.viewSong', compact('indirimbo','pageTitle','subSectionName','subsections'));
+        $pdf = PDF::loadView('indirimbo.songPDF', compact('indirimbo','pageTitle','subSectionName','subsections','bookTitle'));
         return $pdf->download('indirimbo.pdf');
 
     }
